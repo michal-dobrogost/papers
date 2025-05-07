@@ -111,7 +111,13 @@ void solve(CjCsp& csp, CpModelBuilder& cpModel, vector<IntVar>& vars) {
   printf("{\"solution\": %s, \"timeMs\": %lld}\n", solution.c_str(), timeMs);
 }
 
+void printOrToolsVersion() {
+  fprintf(stderr, "OR-Tools version: %s\n", OrToolsVersion::VersionString().c_str());
+}
+
 int main(int argc, char** argv) {
+  printOrToolsVersion();
+
   int err = 0;
   if (argc != 3) {
     fprintf(stderr, "ERROR: number of command line parameters.\n\n");

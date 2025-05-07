@@ -4,6 +4,7 @@
 // https://www.ibm.com/docs/en/icos/22.1.1?topic=f-iloforbiddenassignments
 
 #include <ilcp/cp.h>
+#include <ilcplex/cplex.h>
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -138,7 +139,19 @@ void solve(IloEnv& env, IloModel& model, IloIntVarArray& vars) {
   printf("{\"solution\": null, \"timeMs\": %lld}\n", timeMs);
 }
 
+void printCplexVersion() {
+  int status = 0;
+  CPXENVptr env = CPXopenCPLEX(&status);
+  if (env == NULL) {
+    fprintf(stderr, "cplex version: n/a\n");
+    return;
+  }
+  fprintf(stderr, "cplex version: %s\n", CPXversion(env));
+}
+
 int main(int argc, char** argv) {
+  printCplexVersion();
+
   int err = 0;
   if (argc != 3) {
     fprintf(stderr, "ERROR: number of command line parameters.\n\n");

@@ -98,6 +98,11 @@ void printUsage() {
 }
 
 int main(int argc, char** argv) {
+  fprintf(stderr, "gecode version: %d.%d.%d\n",
+      GECODE_VERSION_NUMBER / 100000,
+      (GECODE_VERSION_NUMBER / 100) % 1000,
+      GECODE_VERSION_NUMBER % 100);
+
   int err = 0;
   if (argc != 3) {
     fprintf(stderr, "ERROR: number of command line parameters.\n\n");
@@ -129,6 +134,7 @@ int main(int argc, char** argv) {
     fprintf(stderr, "ERROR(%d): failed to parse csp instance file.", err);
     return 1;
   }
+
 
   auto startTime = std::chrono::high_resolution_clock::now();
   long int startTimeSec = std::chrono::duration_cast<std::chrono::seconds>(startTime.time_since_epoch()).count();

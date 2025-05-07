@@ -1,4 +1,6 @@
 #include <iostream>
+//#include <ortools/base/version.h>
+#include <ortools/init/init.h>
 #include <ortools/constraint_solver/constraint_solver.h>
 #include <sstream>
 
@@ -132,7 +134,13 @@ void solve(CjCsp& csp, Solver& solver, vector<IntVar*>& vars) {
   solver.EndSearch();
 }
 
+void printOrToolsVersion() {
+  fprintf(stderr, "OR-Tools version: %s\n", OrToolsVersion::VersionString().c_str());
+}
+
 int main(int argc, char** argv) {
+  printOrToolsVersion();
+
   int err = 0;
   if (argc != 3) {
     fprintf(stderr, "ERROR: number of command line parameters.\n\n");
