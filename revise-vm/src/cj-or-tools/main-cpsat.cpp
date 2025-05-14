@@ -1,6 +1,7 @@
 // See https://github.com/d-krupke/cpsat-primer for info on the cpsat solver.
 
 #include <iostream>
+#include <ortools/init/init.h>
 #include <ortools/sat/cp_model.h>
 #include <ortools/sat/cp_model.pb.h>
 #include <ortools/sat/cp_model_solver.h>
@@ -87,8 +88,8 @@ void solve(CjCsp& csp, CpModelBuilder& cpModel, vector<IntVar>& vars) {
 
   Model model;
   SatParameters pams;
-  pams.set_num_workers(1);
-  pams.set_random_seed(seed);
+  //pams.set_num_workers(8);
+  //pams.set_random_seed(seed);
   model.Add(NewSatParameters(pams));
 
   auto startTime = std::chrono::high_resolution_clock::now();

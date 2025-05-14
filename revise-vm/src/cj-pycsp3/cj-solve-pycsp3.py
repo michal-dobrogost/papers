@@ -36,6 +36,7 @@ if __name__ == '__main__':
     instance = compile()
     ace = solver(ACE)
     ace_opts = '-varh=Lexico -valh=First -ng=NO -prepro=false -branching=NON -r_c=99999999999'
+    #ace_opts = '-varh=DdegOnDom -valh=First -ng=NO -prepro=false -branching=NON -r_c=99999999999'
     result = ace.solve(instance, dict_options={"args": ace_opts}, verbose=0)
     time_end = time.time_ns()
     time_ms = math.floor((time_end - time_start) / 1000000)
